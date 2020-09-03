@@ -5,10 +5,18 @@ import axios from 'axios'
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
-function followers(array){
-  array.forEach(item => {
-  })
-}
+// these are followers to loop over 
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+
+//  here is the code to make a card for each follower
+  followersArray.forEach(user => {
+    axios.get(`https://api.github.com/users/${user}`).then(data => {
+    const newCardVar = newCard(data.data)
+    entry.append(newCardVar);
+})
+});
+ 
+// here is the code to make one card of me
 
 // axios.get('https://api.github.com/users/kubes2020').then(response => {
 //   const newCardVar = newCard(response.data)
@@ -39,7 +47,7 @@ function followers(array){
     user, and adding that card to the DOM.
 */
 
-const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -106,6 +114,9 @@ function newCard(myObj){
 }
 
 const entry = document.querySelector('.cards')
+
+
+
 
 
 
