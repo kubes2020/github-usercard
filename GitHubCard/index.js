@@ -14,6 +14,9 @@ const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigkne
     const newCardVar = newCard(response.data)
     entry.append(newCardVar);
 })
+.catch(err => {
+  console.log('you have an error', err)
+})
 });
  
 // here is the code to make one card of me
