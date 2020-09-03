@@ -10,8 +10,8 @@ const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigkne
 
 //  here is the code to make a card for each follower
   followersArray.forEach(user => {
-    axios.get(`https://api.github.com/users/${user}`).then(data => {
-    const newCardVar = newCard(data.data)
+    axios.get(`https://api.github.com/users/${user}`).then(response => {
+    const newCardVar = newCard(response.data)
     entry.append(newCardVar);
 })
 });
