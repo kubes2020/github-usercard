@@ -1,8 +1,30 @@
+import axios from 'axios'
+
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+// these are followers to loop over 
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+
+//  here is the code to make a card for each follower
+  followersArray.forEach(user => {
+    axios.get(`https://api.github.com/users/${user}`).then(response => {
+    const newCardVar = newCard(response.data)
+    entry.append(newCardVar);
+})
+.catch(err => {
+  console.log('you have an error', err)
+})
+});
+ 
+// here is the code to make one card of me
+
+// axios.get('https://api.github.com/users/kubes2020').then(response => {
+//   const newCardVar = newCard(response.data)
+//   entry.append(newCardVar);
+// })
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -28,7 +50,7 @@
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -49,6 +71,57 @@ const followersArray = [];
       </div>
     </div>
 */
+function newCard(myObj){
+  const card = document.createElement('div')
+  const img = document.createElement('img')
+  const cardInfo = document.createElement('div')
+  const name = document.createElement('h3')
+  const username = document.createElement('p')
+  const location = document.createElement('p')
+  const profile = document.createElement('p')
+  const address = document.createElement('a')
+  const followers = document.createElement('p')
+  const following = document.createElement('p')
+  const bio = document.createElement('p')
+
+  /* structure  */
+  card.append(img)
+  card.append(cardInfo)
+  cardInfo.append(name)
+  cardInfo.append(username)
+  cardInfo.append(location)
+  cardInfo.append(profile)
+  profile.append(address)
+  cardInfo.append(followers)
+  cardInfo.append(following)
+  cardInfo.append(bio)
+
+  /*  classes  */
+  card.classList.add('card')
+  cardInfo.classList.add('card-info')
+  name.classList.add('name')
+  username.classList.add('username')
+  
+  /* add text  */
+  img.src = myObj.avatar_url
+  name.textContent = myObj.name
+  username.textContent = myObj.login
+  location.textContent = myObj.location
+  profile.textContent = 'myProfile'
+  address.textContent = myObj.html_url
+  followers.textContent = myObj.followers
+  following.textContent = myObj.following
+  bio.textContent = myObj.bio
+
+  return card
+}
+
+const entry = document.querySelector('.cards')
+
+
+
+
+
 
 /*
   List of LS Instructors Github username's:
